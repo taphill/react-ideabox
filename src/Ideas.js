@@ -2,7 +2,7 @@ import React from "react"
 import Card from "./Card"
 import './Ideas.css'
 
-function Ideas({ ideas }) {
+function Ideas({ ideas, deleteIdea }) {
   const cards = ideas.map(idea => {
     return (
       <Card
@@ -10,6 +10,7 @@ function Ideas({ ideas }) {
         id={idea.id}
         title={idea.title}
         description={idea.description}
+        deleteIdea={deleteIdea}
       />
     )
   })

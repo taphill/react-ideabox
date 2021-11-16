@@ -12,11 +12,21 @@ function App() {
 
   const [ideas, setIdeas] = React.useState(data)
 
+  const addIdea = newIdea => {
+    setIdeas([...ideas, newIdea])
+  }
+
+  const deleteIdea = id => {
+    const filteredIdeas= ideas.filter(idea => idea.id !== id) 
+
+    setIdeas([...filteredIdeas])
+  }
+
   return (
     <main className="App">
       <h1>Ideabox</h1>
-      <Form />
-      {ideas.length ? <Ideas ideas={ideas} /> : <h2>Add some ideas</h2>}
+      <Form addIdea={addIdea} />
+      {ideas.length ? <Ideas ideas={ideas} deleteIdea={deleteIdea} /> : <h2>Add some ideas</h2>}
     </main>
   )
 }

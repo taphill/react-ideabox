@@ -1,7 +1,7 @@
 import React from "react"
 import './Form.css'
 
-function Form() {
+function Form({ addIdea }) {
   const [inputs, setInputs] = React.useState({
     title: '',
     description: ''
@@ -13,8 +13,23 @@ function Form() {
     setInputs({ ...inputs, [name]: value })
   }
 
+  const handleSubmit = (event) => {
+    event.preventDefault()
+
+    addIdea({
+      id: Date.now(),
+      ...inputs
+    })
+
+    clearInputs()
+  }
+
+  const clearInputs = () => {
+    setInputs({ title: '', description: '' })
+  }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
         type='text'
         placeholder='Title'
